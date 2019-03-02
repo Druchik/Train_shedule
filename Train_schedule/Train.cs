@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Train_schedule
+﻿namespace Train_schedule
 {
     public class Train
     {
-        public string destination;
-        public int number;
-        public string date;
+        public string Destination { get; set; }
+        public int Number { get; set; }
+        public string Date { get; set; }
     }
 }

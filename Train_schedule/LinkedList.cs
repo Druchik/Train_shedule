@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Train_schedule
 {
@@ -74,7 +72,7 @@ namespace Train_schedule
             }
         }
 
-        // Проверка ввода: пропускаем только числа
+        // Проверка ввода: пропускаем только положительные числа
         public int InputParseDigital()
         {
             int num;
@@ -170,10 +168,10 @@ namespace Train_schedule
             do
             {
                 Console.WriteLine("Введите пункт назначения: ");
-                train.destination = ReadLettersFromConsole();
-                if (train.destination == "")
+                train.Destination = ReadLettersFromConsole();
+                if (train.Destination == "")
                     Console.WriteLine("Введено пустое поле! Повторите ввод.");
-            } while (train.destination == "");
+            } while (train.Destination == "");
 
             do
             {
@@ -182,9 +180,9 @@ namespace Train_schedule
                 if (Program.list.Contains(n))
                     Console.WriteLine("Нельзя вводить поезда с одинаковыми номерами! Повторите ввод.");
             } while (Program.list.Contains(n));
-            train.number = n;
+            train.Number = n;
             Console.WriteLine("Введите время отправления (в формате чч:мм, где ч - часы, м - минуты): ");
-            train.date = InputParseTime();
+            train.Date = InputParseTime();
         }
 
         // Вывод всего списка
@@ -193,9 +191,9 @@ namespace Train_schedule
             Console.WriteLine("Расписание поездов: ");
             foreach (Train item in list)
             {
-                Console.WriteLine("\nПункт назначения: {0}", item.destination);
-                Console.WriteLine("Номер поезда: {0}", Convert.ToString(item.number));
-                Console.WriteLine("Время отправления: {0}", item.date);
+                Console.WriteLine("\nПункт назначения: {0}", item.Destination);
+                Console.WriteLine("Номер поезда: {0}", Convert.ToString(item.Number));
+                Console.WriteLine("Время отправления: {0}", item.Date);
             }
             Console.WriteLine();
         }
@@ -206,7 +204,7 @@ namespace Train_schedule
             Node current = head;
             while (current != null)
             {
-                if (current.Data.number.Equals(Number))
+                if (current.Data.Number.Equals(Number))
                 {
                     return true;
                 }
@@ -216,12 +214,12 @@ namespace Train_schedule
         }
 
         // Поиск элемента и передача данных о поезде в случае нахождения его в расписании
-        public Node FindTrain(int Number)
+        public Node FindTrain(int num)
         {
             Node current = head;
             while (current != null)
             {
-                if (current.Data.number.Equals(Number))
+                if (current.Data.Number.Equals(num))
                 {
                     return current;
                 }
@@ -231,12 +229,12 @@ namespace Train_schedule
         }
 
         // Редактирование элемента 
-        public bool EditTrain(int Number)
+        public bool EditTrain(int num)
         {
             Node current = head;
             while (current != null)
             {
-                if (current.Data.number.Equals(Number))
+                if (current.Data.Number.Equals(num))
                 {
                     Program.list.InputData(current.Data);
                     return true;
@@ -247,14 +245,14 @@ namespace Train_schedule
         }
 
         // Удаление элемента
-        public bool Remove(int Number)
+        public bool Remove(int num)
         {
             Node current = head;
             Node previous = null;
 
             while (current != null)
             {
-                if (current.Data.number.Equals(Number))
+                if (current.Data.Number.Equals(num))
                 {
                     // Если узел в середине или в конце
                     if (previous != null)
@@ -287,7 +285,7 @@ namespace Train_schedule
             {
                 foreach (Train item in list)
                 {
-                    text = item.destination + " " + Convert.ToString(item.number) + " " + item.date + " ";
+                    text = item.Destination + " " + Convert.ToString(item.Number) + " " + item.Date + " ";
                     byte[] array = Encoding.Default.GetBytes(text);// преобразуем строку в байты
                     fstream.Write(array, 0, array.Length);// запись массива байтов в файл
                 }
@@ -311,11 +309,11 @@ namespace Train_schedule
                     {
                         Train train = new Train
                         {
-                            destination = currentLine[element],
-                            number = Int32.Parse(currentLine[element + 1]),
-                            date = currentLine[element + 2]
+                            Destination = currentLine[element],
+                            Number = Int32.Parse(currentLine[element + 1]),
+                            Date = currentLine[element + 2]
                         };
-                        if (Program.list.Contains(train.number))
+                        if (Program.list.Contains(train.Number))
                             element += 2;
                         else
                         {

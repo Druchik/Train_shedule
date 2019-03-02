@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Train_schedule
 {
@@ -50,12 +46,12 @@ namespace Train_schedule
                             Console.WriteLine("Список пуст! Заполните его.");
                         else
                             list.PrintData(list);
+                        Console.WriteLine("Нажмите Enter для продолжения...");
                         Console.ReadLine();    
                         break;
                     }
                     case 3: //поиск позда по номеру
                     {
-                        
                         if (list.ListIsEmpty())
                             Console.WriteLine("Список пуст! Заполните его.");
                         else
@@ -66,13 +62,14 @@ namespace Train_schedule
                             if (nd != null)
                             {
                                 Console.WriteLine("Найденный поезд: ");
-                                Console.WriteLine("Пункт назначения: {0}", nd.Data.destination);
-                                Console.WriteLine("Номер поезда: {0}", Convert.ToString(nd.Data.number));
-                                Console.WriteLine("Время отправления: {0}", nd.Data.date);
+                                Console.WriteLine("Пункт назначения: {0}", nd.Data.Destination);
+                                Console.WriteLine("Номер поезда: {0}", Convert.ToString(nd.Data.Number));
+                                Console.WriteLine("Время отправления: {0}", nd.Data.Date);
                             }
                             else
                                 Console.WriteLine("Поезда с таким номером нет в списке!");
                         }
+                        Console.WriteLine("Нажмите Enter для продолжения...");
                         Console.ReadLine();
                         break;
                     }
@@ -87,6 +84,7 @@ namespace Train_schedule
                             bool isPresent = list.Remove(number);
                             Console.WriteLine(isPresent == true ? "Запись удалена!" : "Поезда с таким номером нет в списке!");
                         }
+                        Console.WriteLine("Нажмите Enter для продолжения...");
                         Console.ReadLine();
                         break;
                     }
@@ -101,6 +99,7 @@ namespace Train_schedule
                             if(!list.EditTrain(number))
                                 Console.WriteLine("Поезда с таким номером нет в списке!");
                         }
+                        Console.WriteLine("Нажмите Enter для продолжения...");
                         Console.ReadLine();
                         break;
                     }
@@ -110,6 +109,7 @@ namespace Train_schedule
                             Console.WriteLine("Список пуст! Заполните его.");
                         else
                             list.WriteInFile(list);
+                        Console.WriteLine("Нажмите Enter для продолжения...");
                         Console.ReadLine();
                         break;
                     }
