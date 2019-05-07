@@ -27,6 +27,7 @@ namespace Train_schedule
                 Console.WriteLine("5 - Редактировать");
                 Console.WriteLine("6 - Сохранить в файл");
                 Console.WriteLine("7 - Считать из файла");
+                Console.WriteLine("8 - Информация о программе");
                 Console.WriteLine("0 - Выход");
                 Console.WriteLine("Выберите нужный пункт меню: ");
                 while (true)
@@ -130,8 +131,26 @@ namespace Train_schedule
                         Console.Clear();
                         break;
                     }
+                    case 8: //информация о программе
+                    {
+                        AboutProgram();
+                        Console.Write(WAITING_FOR_ENTER);
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// Информация о программе
+        /// </summary>
+        private static void AboutProgram()
+        {
+            Console.WriteLine("\nИнформационная система \"Расписание поездов\"");
+            Console.WriteLine("Версия (выпуск): 1.0");
+            Console.WriteLine("Автор: Шаклеин Андрей, группа Z6432K");
         }
 
         /// <summary>
